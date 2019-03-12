@@ -7,25 +7,35 @@ def update_quality(items)
     next if item.name == SULFURAS
     item.sell_in -= 1
     if item.name == AGED_BRIE
-      increase_quality(item)
-      increase_quality(item) if expired?(item)
+      update_aged_brie_quality(item)
     elsif item.name == BACKSTAGE_PASSES
-      increase_quality(item)
-      if item.sell_in < 10
-        increase_quality(item)
-      end
-      if item.sell_in < 5
-        increase_quality(item)
-      end
-      if expired?(item)
-        item.quality -= item.quality
-      end
+      update_backstage_pass_quality(item)
     else
       decrease_quality(item)
       decrease_quality(item) if expired?(item)
     end
   end
 end
+
+def update_aged_brie_quality(item)
+  increase_quality(item)
+  increase_quality(item) if expired?(item)
+end
+
+def update_backstage_pass_quality(item)
+  increase_quality(item)
+  if item.sell_in < 10
+    increase_quality(item)
+  end
+  if item.sell_in < 5
+    increase_quality(item)
+  end
+  if expired?(item)
+    item.quality -= item.quality
+  end
+end
+
+
 
 def increase_quality(item)
   if item.quality < 50
