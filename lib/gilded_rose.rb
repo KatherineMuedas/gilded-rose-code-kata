@@ -1,6 +1,9 @@
 SULFURAS = "Sulfuras, Hand of Ragnaros"
 BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
 AGED_BRIE = "Aged Brie"
+ZERO_DAYS = 0
+FIVE_DAYS = 5
+TEN_DAYS = 10
 
 def update_quality(items)
   items.each do |item|
@@ -24,18 +27,16 @@ end
 
 def update_backstage_pass_quality(item)
   increase_quality(item)
-  if item.sell_in < 10
+  if item.sell_in < TEN_DAYS
     increase_quality(item)
   end
-  if item.sell_in < 5
+  if item.sell_in < FIVE_DAYS
     increase_quality(item)
   end
   if expired?(item)
     item.quality -= item.quality
   end
 end
-
-
 
 def increase_quality(item)
   if item.quality < 50
@@ -50,7 +51,7 @@ def decrease_quality(item)
 end
 
 def expired?(item)
-  item.sell_in < 0
+  item.sell_in < ZERO_DAYS
 end
 
 #----------------------------
