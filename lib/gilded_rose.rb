@@ -10,19 +10,13 @@ def update_quality(items)
         item.quality -= 1
       end
     else
-      if item.quality < 50
-        item.quality += 1
-        if item.name == BACKSTAGE_PASSES
-          if item.sell_in < 11
-            if item.quality < 50
-              item.quality += 1
-            end
-          end
-          if item.sell_in < 6
-            if item.quality < 50
-              item.quality += 1
-            end
-          end
+      increase_quality(item)
+      if item.name == BACKSTAGE_PASSES
+        if item.sell_in < 11
+          increase_quality(item)
+        end
+        if item.sell_in < 6
+          increase_quality(item)
         end
       end
     end
@@ -38,11 +32,15 @@ def update_quality(items)
           item.quality -= item.quality
         end
       else
-        if item.quality < 50
-          item.quality += 1
-        end
+        increase_quality(item)
       end
     end
+  end
+end
+
+def increase_quality(item)
+  if item.quality < 50
+    item.quality += 1
   end
 end
 
