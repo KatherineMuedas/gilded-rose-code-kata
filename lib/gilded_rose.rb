@@ -1,3 +1,4 @@
+require_relative 'aged_brie.rb'
 SULFURAS = "Sulfuras, Hand of Ragnaros"
 BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
 AGED_BRIE = "Aged Brie"
@@ -6,12 +7,14 @@ ZERO_DAYS = 0
 FIVE_DAYS = 5
 TEN_DAYS = 10
 
+
 def update_quality(items)
   items.each do |item|
     next if item.name == SULFURAS
     item.sell_in -= 1
     if item.name == AGED_BRIE
-      update_aged_brie_quality(item)
+      aged_brie = AgedBrie.new(item)
+      aged_brie.update
     elsif item.name == BACKSTAGE_PASSES
       update_backstage_pass_quality(item)
     elsif item.name == CONJURED
@@ -24,11 +27,6 @@ def update_quality(items)
       end
     end
   end
-end
-
-def update_aged_brie_quality(item)
-  increase_quality(item)
-  increase_quality(item) if expired?(item)
 end
 
 def update_backstage_pass_quality(item)
