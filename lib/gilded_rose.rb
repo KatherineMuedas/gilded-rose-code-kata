@@ -16,13 +16,15 @@ def update_quality(items)
   items.each do |item|
     next if item.name == SULFURAS
     item.sell_in -= 1
-    if item.name == AGED_BRIE
+
+    case item.name
+    when AGED_BRIE
       aged_brie = AgedBrie.new(item)
       aged_brie.update
-    elsif item.name == BACKSTAGE_PASSES
+    when BACKSTAGE_PASSES
       backstage = BackstagePass.new(item)
       backstage.update
-    elsif item.name == CONJURED
+    when CONJURED
       conjured = Conjured.new(item)
       conjured.update
     else
