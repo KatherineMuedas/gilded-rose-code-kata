@@ -1,5 +1,6 @@
 require_relative 'gilded_rose'
-class Conjured
+require_relative 'normal'
+class Conjured < Normal
 
   attr_reader :item
 
@@ -25,9 +26,5 @@ class Conjured
     if @item.quality > 0
       @item.quality -= 1
     end
-  end
-
-  def expired?
-    @item.sell_in < ZERO_DAYS
   end
 end

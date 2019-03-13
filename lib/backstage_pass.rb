@@ -1,5 +1,6 @@
 require_relative 'gilded_rose'
-class BackstagePass
+require_relative 'normal'
+class BackstagePass < Normal
 
   attr_reader :item
 
@@ -24,9 +25,5 @@ class BackstagePass
     if @item.quality < 50
       @item.quality += 1
     end
-  end
-
-  def expired?
-    @item.sell_in < ZERO_DAYS
   end
 end

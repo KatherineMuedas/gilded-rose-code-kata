@@ -1,5 +1,6 @@
 require_relative 'gilded_rose'
-class AgedBrie
+require_relative 'normal'
+class AgedBrie < Normal
 
   attr_reader :item
 
@@ -18,7 +19,4 @@ class AgedBrie
     end
   end
 
-  def expired?
-    @item.sell_in < ZERO_DAYS
-  end
 end
