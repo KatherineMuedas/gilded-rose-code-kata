@@ -12,11 +12,4 @@ class AgedBrie < Normal
     increase_quality
     increase_quality if expired?
   end
-
-  def increase_quality
-    if @item.quality < 50
-      @item.quality += 1
-    end
-  end
-
 end

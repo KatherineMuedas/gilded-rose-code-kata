@@ -19,14 +19,20 @@ class Normal
     @item.sell_in < ZERO_DAYS
   end
 
+  def decrease_quality
+    if @item.quality > 0
+      @item.quality -= 1
+    end
+  end
+
   def decrease_twice_as_fast
     decrease_quality
     decrease_quality
   end
 
-  def decrease_quality
-    if @item.quality > 0
-      @item.quality -= 1
+  def increase_quality
+    if @item.quality < 50
+      @item.quality += 1
     end
   end
 end
