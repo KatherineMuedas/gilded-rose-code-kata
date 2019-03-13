@@ -1,6 +1,7 @@
 require_relative 'aged_brie.rb'
 require_relative 'backstage_pass.rb'
 require_relative 'conjured.rb'
+require_relative 'normal.rb'
 
 SULFURAS = "Sulfuras, Hand of Ragnaros"
 BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
@@ -25,37 +26,12 @@ def update_quality(items)
       conjured = Conjured.new(item)
       conjured.update
     else
-      if expired?(item)
-        decrease_twice_as_fast(item)
-      else
-        decrease_quality(item)
-      end
+      normal = Normal.new(item)
+      normal.update
     end
   end
 end
 
-
-
-def increase_quality(item)
-  if item.quality < 50
-    item.quality += 1
-  end
-end
-
-def decrease_quality(item)
-  if item.quality > 0
-    item.quality -= 1
-  end
-end
-
-def expired?(item)
-  item.sell_in < ZERO_DAYS
-end
-
-def decrease_twice_as_fast(item)
-  decrease_quality(item)
-  decrease_quality(item)
-end
 
 #----------------------------
 # DO NOT CHANGE THINGS BELOW
