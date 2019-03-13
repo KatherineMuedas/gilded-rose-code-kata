@@ -47,6 +47,7 @@ end
 def update_conjured_quality(item)
   if expired?(item)
     decrease_twice_as_fast(item)
+    decrease_twice_as_fast(item)
   else
     decrease_twice_as_fast(item)
   end
