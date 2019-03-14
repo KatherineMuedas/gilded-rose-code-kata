@@ -8,11 +8,7 @@ class Normal
   end
 
   def update
-    if expired?
-      decrease_twice_as_fast
-    else
-      decrease_quality
-    end
+    expired? ? decrease_twice_as_fast : decrease_quality
   end
 
   def expired?
@@ -20,9 +16,7 @@ class Normal
   end
 
   def decrease_quality
-    if @item.quality > 0
-      @item.quality -= 1
-    end
+    @item.quality -= 1 if @item.quality > 0
   end
 
   def decrease_twice_as_fast
@@ -31,8 +25,6 @@ class Normal
   end
 
   def increase_quality
-    if @item.quality < 50
-      @item.quality += 1
-    end
+    @item.quality += 1 if @item.quality < 50
   end
 end

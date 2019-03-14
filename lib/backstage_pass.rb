@@ -10,14 +10,8 @@ class BackstagePass < Normal
 
   def update
     increase_quality
-    if @item.sell_in < TEN_DAYS
-      increase_quality
-    end
-    if @item.sell_in < FIVE_DAYS
-      increase_quality
-    end
-    if expired?
-      @item.quality -= @item.quality
-    end
+    increase_quality if @item.sell_in < TEN_DAYS
+    increase_quality if @item.sell_in < FIVE_DAYS
+    @item.quality -= @item.quality if expired?
   end
 end
